@@ -10,7 +10,6 @@ GradebookTest::GradebookTest(std::vector<std::string> work) {
     this->m_type = work[1];
     this->m_earned = std::stof(work[2]);
     this->m_max = std::stof(work[3]);
-
 }
 
 void GradebookTest::SetTask(std::string task) {
@@ -45,4 +44,12 @@ float GradebookTest::GetMax() {
     return m_max;
 }
 
+void GradebookTest::PrintGrade() {
+    if (m_earned == -1) {
+        std::cout << this->m_task << ":\tIncomplete/" << this->m_max << "\n";
+
+    } else {
+        std::cout << this->m_task << ":\t" << this->m_earned << "/" << this->m_max << "\n";
+    }
+}
 
