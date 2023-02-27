@@ -9,8 +9,10 @@ This is our gradebook assignment for CSC 212. Our group consist of **Jason Wu, E
 When we first brainstormed the program out, we had some rough draft ideas with psudo-flowcharts.
 Below are out initial flowchats of the program.
 
-![Flowchart](/images/psudo1.png)
-![Flowchart](/images/psudo2.png)
+<p align="center">
+	<img src="/images/psudo1.png" width="350" height="500">
+	<img src="/images/psudo2.png" width="350" height="500">
+</p>
 
 As you can see from the first image, this is the rough draft for the main.cpp long with the gradebook.cpp and gradebook.h.
 When the main.cpp starts, our first goal planned was to open the gradebook data. The data should be specific towards the student with thier own personal grades. Our proposed file type of choice was **Comma Seperated Values (CSV)** file. The file will be opened and read into the program with a readCSV function, which will then prompt to start our user interface (UI). We wanted the UI to be within the terminal  of the **CLion IDE** (Recommended IDE for the class). Within the UI, we planned to have the user select options that will be prompt into the terminal. 
