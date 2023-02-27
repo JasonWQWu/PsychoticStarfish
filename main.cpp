@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     while (input != -1) {
         std::cout << "\n\n-------------------------------------------";
         std::cout << "\nChoose option:\n"
-            << "\t1. Display progress\n\t2. Update grades\n\t3. View all grades\n\b\b\t4. Quit\n";
+                  << "\t1. Display progress\n\t2. Update grades\n\t3. View all grades\n\b\b\t4. Quit\n";
         std::cin >> input;
 
         switch (input) {
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 3:             // View all grades (writes updated csv file)
-            ViewAll(header, work, input);
+                ViewAll(header, work, input);
                 break;
 
             case 4:             // Quit
@@ -107,6 +107,8 @@ void ReadCSV(std::string &header, std::vector<GradebookTest> &work) {
     return;
 }
 
+// Retrieves sum of earned points and max points, then outputs current number grade
+// letter grade. Additionally, outputs cumulative points earned.
 void Progress(std::vector<GradebookTest> &work, int &input) {
 
     // Retrieves total points earned and max points
@@ -144,10 +146,10 @@ void Progress(std::vector<GradebookTest> &work, int &input) {
     }
 
     std::cout << "\nGrade:\t\t" << num_grade << "|" << let_grade << "\nCumulative:\t"
-        << earned_max.first << "/1000" << "\n\n";
+              << earned_max.first << "/1000" << "\n\n";
 
     std::cout << "Choose option:\n"
-        << "\t1. Return to menu\n\t2. Quit\n";
+              << "\t1. Return to menu\n\t2. Quit\n";
 
     std::cin >> input;
 
@@ -166,6 +168,8 @@ void Progress(std::vector<GradebookTest> &work, int &input) {
     }
 }
 
+// Iterates through work vector and sums all points earned.
+// Returns total earned and corresponding max in std::pair<float, float> format.
 std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work) {
     float cumulative;
     float max;
@@ -204,6 +208,7 @@ std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work) {
     return output = std::make_pair(cumulative, max);
 }
 
+// Modifies earned points of user-selected assignment
 void Update(std::vector<GradebookTest> &work, int &input) {
     std::string assign_name;        // assignment name is synonymous to task
     float earned;
@@ -259,6 +264,7 @@ int FindWork(std::vector<GradebookTest> &work, std::string task) {
     }
 }
 
+// 
 void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
     std::string output_name;
 
@@ -298,6 +304,4 @@ void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
         default:
             std::cout << "Error: Valid option not chosen.\n";
     }
-
 }
-
