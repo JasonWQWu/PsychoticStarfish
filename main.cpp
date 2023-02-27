@@ -17,7 +17,7 @@ void Category(std::vector<Gradebook> &work);
 void Course(std::vector<Gradebook> &work, int &input);
 void Cumulative(std::vector<Gradebook> &work);
 
-std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work);
+std::pair<float, float> CalcGrade(std::vector<Gradebook> &work);
 
 void Update(std::vector<Gradebook> &work, int &input);
 
