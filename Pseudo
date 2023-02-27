@@ -9,11 +9,10 @@ makes a vector called work with gradebook as the type
 
 [UI]
 Displays 4 options for the student to choose from
-    1. Reads the students file
-    2. Views the sutdents progress
-    3. The assignments in the curriculum
-    4. Option to update the previous data
-    Exit when input would be -1
+    1. Views the sutdents progress
+    2. Updates the gradebook
+    3. Option to view all of the grade book
+    4.Exit when input would be -1
 
     switch statement with the inputed value
         first test case reads the file
@@ -22,7 +21,37 @@ Displays 4 options for the student to choose from
         fourth updates the file
 
         if the input is not equal to -1 it will exit the function and move on
-        
+
+
+[Gradebook(header file)]
+
+    [Private]
+    integer size
+    integer number off Parameters
+    a vector of a vector as a string, called assignments
+
+    [Public]
+    includes Gradebook()
+    the addAssignment void function with a vector as a string called newAssignment
+    toString function
+
+[Gradebook(cpp file)]
+includs header file
+
+    Gradebook::Gradebook()
+        sets the size to 0
+        sets the number of parameters to 4
+    Gradebook::getNumParams()
+        returns the number of parameters (-> the arrow accesses through a pointer)
+
+    Gradebook::addAssignment(std::vector<std::string> newAssignment)
+        void function to access assignments and push back the new assignments into the string vector
+        increases the size as well
+
+    std::string Gradebook::toString()
+        nested for loop
+
+
 
 [bool ReadCSV()]
 gets the fileName as input
@@ -34,28 +63,33 @@ for loop
 a pair of floats called CalcGrade with work as the parameter
 outputs the grade letter and cumulative out of 1000
 
-    [pair<float, float> CalcGrade()]
-    calculates the MATH
-    returns math
-
-[void viewAll()]
-outputs an organizes csv file of all the assignments
+    UI will offer 3 different pathways
+        1. individual 
+        2. Category 
+        3. Course 
+    Displays the specific data after the chosen pathway
+        Will prompt the user to either
+            1. go back to the main ui 
+            2. Quit
 
 [void Update()]
-gets the assignment as input
-sets variable assignldx
-    calls FindWork function with the assignment names
+updates the ui 
+    Will call upon FindWork function (a vector)
+        once Findwork is called and the update Passes
+        Splits off into three options
+            1. Go back to the main ui
+            2. Update again
+            3. Quit
 
-gets the points recieved as input
-    sets work as points earned
 
-finally calls upon updateCSV with work being in the parameter
+[void viewAll()]
+calls upon the ViewAll ui
+Displays the data 
+    1. GO back to the main ui
+    2. Quit
 
 [updateCSV()]
-
-
 for loop to loop through the size of the work
-
 
 [int FindWork(string name)]
 loops through work 
