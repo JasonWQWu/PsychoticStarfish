@@ -1,4 +1,4 @@
-#include "gradebook_test.h"
+#include "gradebook.h"
 
 #include <iostream>
 #include <string>
@@ -8,30 +8,30 @@
 #include <cmath>
 #include <iomanip>
 
-void ReadCSV(std::string &header, std::vector<GradebookTest> &work);
+void ReadCSV(std::string &header, std::vector<Gradebook> &work);
 
-void Progress(std::vector<GradebookTest> &work, int &input);
+void Progress(std::vector<Gradebook> &work, int &input);
 
-void Individual(std::vector<GradebookTest> &work);
-void Category(std::vector<GradebookTest> &work);
-void Course(std::vector<GradebookTest> &work, int &input);
-void Cumulative(std::vector<GradebookTest> &work);
+void Individual(std::vector<Gradebook> &work);
+void Category(std::vector<Gradebook> &work);
+void Course(std::vector<Gradebook> &work, int &input);
+void Cumulative(std::vector<Gradebook> &work);
 
 std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work);
 
-void Update(std::vector<GradebookTest> &work, int &input);
+void Update(std::vector<Gradebook> &work, int &input);
 
-int FindWork(std::vector<GradebookTest> &work, std::string type);
+int FindWork(std::vector<Gradebook> &work, std::string type);
 
 // Creates updated CSV file.
 // To actually see the CSV file in the directory, must quit program.
-void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input);
+void ViewAll(std::string header, std::vector<Gradebook> &work, int &input);
 
 
 int main(int argc, char* argv[]) {
 
     std::string header;
-    std::vector<GradebookTest> work;
+    std::vector<Gradebook> work;
     int input = 0;
 
     ReadCSV(header, work);
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 
 // Repeatedly reads input for valid csv file name.
 // When csv file found, creates an object for each row and tokenizes every item.
-void ReadCSV(std::string &header, std::vector<GradebookTest> &work) {
+void ReadCSV(std::string &header, std::vector<Gradebook> &work) {
 
     std::ifstream input_file;
     std::string file_name;
@@ -105,7 +105,7 @@ void ReadCSV(std::string &header, std::vector<GradebookTest> &work) {
         }
 
         // Push tokenized items (Tasks, Type, Earned, Max) into an object
-        GradebookTest tmp(tmp_vec);
+        Gradebook tmp(tmp_vec);
 
         // Push object into work vector
         work.push_back(tmp);
@@ -115,7 +115,7 @@ void ReadCSV(std::string &header, std::vector<GradebookTest> &work) {
 }
 
 // Prompts user to choose between individual task grade, category grades, or overall grade.
-void Progress(std::vector<GradebookTest> &work, int &input) {
+void Progress(std::vector<Gradebook> &work, int &input) {
 
     std::cout << "\nChoose [Display progress] option:\n"
               << "\t1. Individual\n\t2. Category\n\t3. Course\n";
@@ -157,7 +157,7 @@ void Progress(std::vector<GradebookTest> &work, int &input) {
 
 // Iterates through work vector and sums all points earned.
 // Returns total earned and corresponding max in std::pair<float, float> format.
-std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work) {
+std::pair<float, float> CalcGrade(std::vector<Gradebook> &work) {
     float cumulative = 0;
     float max = 0;
 
@@ -178,7 +178,7 @@ std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work) {
 }
 
 // Modifies earned points of user-selected assignment
-void Update(std::vector<GradebookTest> &work, int &input) {
+void Update(std::vector<Gradebook> &work, int &input) {
     std::string assign_name;        // assignment name is synonymous to task
     float earned;
 
@@ -237,7 +237,7 @@ void Update(std::vector<GradebookTest> &work, int &input) {
 }
 
 // Finds assignment in work vector and returns index
-int FindWork(std::vector<GradebookTest> &work, std::string task) {
+int FindWork(std::vector<Gradebook> &work, std::string task) {
     for (int idx = 0; idx < work.size(); idx++) {
         if (work[idx].GetTask() == task) {
             return idx;
@@ -247,7 +247,7 @@ int FindWork(std::vector<GradebookTest> &work, std::string task) {
 }
 
 // Creates updated CSV file, which becomes accessible in the directory after quitting program
-void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
+void ViewAll(std::string header, std::vector<Gradebook> &work, int &input) {
     std::string output_name;
     std::cout << "\nInput desired name of output CSV file:\n";
     std::cin >> output_name;
@@ -285,7 +285,7 @@ void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
 
 // Calculates sum of available grades (ignores -1) and divides over max.
 // Outputs current number grade, corresponding letter grades, and cumulative points earned.
-void Cumulative(std::vector<GradebookTest> &work) {
+void Cumulative(std::vector<Gradebook> &work) {
     // Retrieves total points earned and max points
     std::pair<float, float> earned_max = CalcGrade(work);
     std::string let_grade("");
@@ -326,7 +326,7 @@ void Cumulative(std::vector<GradebookTest> &work) {
 }
 
 // Prompts user for assignment name, and prints grade for that assignment
-void Individual(std::vector<GradebookTest> &work) {
+void Individual(std::vector<Gradebook> &work) {
     std::cout << "\nInput name of assignment to display:";
     std::string assign_name;
     std::cin >> assign_name;
@@ -354,7 +354,7 @@ void Individual(std::vector<GradebookTest> &work) {
 }
 
 // Prompts user for category, and prints all grades associated with that category
-void Category(std::vector<GradebookTest> &work) {
+void Category(std::vector<Gradebook> &work) {
     std::cout << "\nInput name of category to display:";
     std::string cat_name;
     std::cin >> cat_name;
@@ -375,7 +375,7 @@ void Category(std::vector<GradebookTest> &work) {
 }
 
 // Prompts
-void Course(std::vector<GradebookTest> &work, int &input) {
+void Course(std::vector<Gradebook> &work, int &input) {
     std::cout << "\nChoose [Course] option:\n"
               << "\t1. All grades\n\t2. Category totals\n\t3. Course overall\n";
     std::cin >> input;
