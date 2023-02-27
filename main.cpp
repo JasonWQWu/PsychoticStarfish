@@ -79,17 +79,17 @@ void ReadCSV(std::string &header, std::vector<Gradebook> &work) {
 
     std::cout << "Input file name:";
     while (std::cin >> file_name) {
-        input_file.open(file_name);
+        input_file.open(file_name);                         // Attempts to access input CSV file (i.e., checks if it exists)
 
-        if (input_file) {
-            std::cout << "File found.";
+        if (input_file) {                      
+            std::cout << "File found.";                     // Confirms CSV file name found in directory
             break;
-        } else {
-            std::cout << "File not found; try again:";
+        } else {                            
+            std::cout << "File not found; try again:";      // Prompts user to re-enter valid CSV file name if not found in directory
         }
     }
 
-    // saves first line of csv file as header
+    // Saves first line of CSV file as header
     std::getline(input_file, header);
 
     // Works on each individual row of csv file
@@ -195,7 +195,7 @@ void Update(std::vector<Gradebook> &work, int &input) {
 
         }
 
-        // Checks if name exists in CSV file
+        // Checks if input assignment name exists
         while (FindWork(work, assign_name) == -1) {
             std::cout << "\nName not found in CSV; Re-enter name:";
             std::cin >> assign_name;
@@ -249,13 +249,15 @@ int FindWork(std::vector<Gradebook> &work, std::string task) {
 // Creates updated CSV file, which becomes accessible in the directory after quitting program
 void ViewAll(std::string header, std::vector<Gradebook> &work, int &input) {
     std::string output_name;
-    std::cout << "\nInput desired name of output CSV file:\n";
+    std::cout << "\nInput desired name of output CSV file:";
     std::cin >> output_name;
     output_name += ".csv";
     std::ofstream ofs(output_name);
 
-    ofs << header << "\n";              // pushes header row first
+    // pushes header row first
+    ofs << header << "\n";              
 
+    // Pushes Task, Type, Earned, and Max in that order following CSV format
     for (int i = 0; i < work.size(); i++) {
         ofs << work[i].GetTask() << "," << work[i].GetType() << "," << std::fixed
             << std::setprecision(1) << work[i].GetEarned() << ","
@@ -348,7 +350,8 @@ void Individual(std::vector<Gradebook> &work) {
 
         }
     }
-
+    
+    // Prints chosen assignment name and grade
     work[FindWork(work, assign_name)].PrintGrade();
 
 }
@@ -374,7 +377,7 @@ void Category(std::vector<Gradebook> &work) {
     }
 }
 
-// Prompts
+// Prompts course options (All grades, Category totals, Course overall)
 void Course(std::vector<Gradebook> &work, int &input) {
     std::cout << "\nChoose [Course] option:\n"
               << "\t1. All grades\n\t2. Category totals\n\t3. Course overall\n";
