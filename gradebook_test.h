@@ -14,6 +14,7 @@ class GradebookTest {
 
         public:
             GradebookTest(std::vector<std::string> work);
+        
             void SetTask(std::string task);
             std::string GetTask();
             void SetType(std::string type);
@@ -22,4 +23,5 @@ class GradebookTest {
             float GetEarned();
             void SetMax(float max);
             float GetMax();
+            void PrintGrade();
 };
