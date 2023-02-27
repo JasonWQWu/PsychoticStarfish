@@ -1,10 +1,12 @@
 #include "gradebook_test.h"
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <cmath>
+#include <iomanip>
 
 void ReadCSV(std::string &header, std::vector<GradebookTest> &work);
 
@@ -16,7 +18,7 @@ void Update(std::vector<GradebookTest> &work, int &input);
 
 int FindWork(std::vector<GradebookTest> &work, std::string type);
 
-void ViewAll(std::string header, std::vector<std::string> &work);
+void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input);
 
 
 int main(int argc, char* argv[]) {
@@ -29,8 +31,9 @@ int main(int argc, char* argv[]) {
 
     // UI
     while (input != -1) {
-        std::cout << "\n\nChoose option:\n"
-            << "\t1. Display progress.\n\t2. Update grades.\n\t3. View all grades.\n\b\b\t4. Quit.\n";
+        std::cout << "\n\n-------------------------------------------";
+        std::cout << "\nChoose option:\n"
+            << "\t1. Display progress\n\t2. Update grades\n\t3. View all grades\n\b\b\t4. Quit\n";
         std::cin >> input;
 
         switch (input) {
@@ -43,7 +46,7 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 3:             // View all grades (writes updated csv file)
-
+            ViewAll(header, work, input);
                 break;
 
             case 4:             // Quit
@@ -140,11 +143,11 @@ void Progress(std::vector<GradebookTest> &work, int &input) {
         let_grade = "F";
     }
 
-    std::cout << "Grade:\t\t" << num_grade << "|" << let_grade << "\nCumulative:\t"
+    std::cout << "\nGrade:\t\t" << num_grade << "|" << let_grade << "\nCumulative:\t"
         << earned_max.first << "/1000" << "\n\n";
 
     std::cout << "Choose option:\n"
-        << "\t1. Return to menu.\n\t2. Quit.\n";
+        << "\t1. Return to menu\n\t2. Quit\n";
 
     std::cin >> input;
 
@@ -207,9 +210,10 @@ void Update(std::vector<GradebookTest> &work, int &input) {
 
     // While input remains 2, continue to prompt grade update
     while (input == 2) {
-        std::cout << "Input name of assignment to update:\n";
+        std::cout << "\nInput name of assignment to update:";
         std::cin >> assign_name;
-        std::cout << "\nInput new grade:\n";
+        std::cout << "\nInput new grade:";
+        std::cin >> earned;
 
         // If assignment name was in lowercase, convert to uppercase
         if ((assign_name[0] >= 'a') && assign_name[0] <= 'z') {
@@ -220,10 +224,10 @@ void Update(std::vector<GradebookTest> &work, int &input) {
         // Finds assignment in work vector and changes its m_earned
         work[FindWork(work, assign_name)].SetEarned(earned);
 
-        std::cout << "Assignment " << assign_name << " grade changed to " << earned << ".\n\n";
+        std::cout << "\nAssignment " << assign_name << " grade changed to " << earned << ".\n\n";
 
         std::cout << "Choose option:\n"
-                  << "\t1. Return to menu.\n\t2. Update again.\n\t3. Quit.";
+                  << "\t1. Return to menu\n\t2. Update another assignment\n\t3. Quit\n";
 
         std::cin >> input;
 
@@ -255,16 +259,45 @@ int FindWork(std::vector<GradebookTest> &work, std::string type) {
     }
 }
 
-void ViewAll(std::string header, std::vector<std::string> &work, ) {
+void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
     std::string output_name;
 
     std::cout << "\nInput desired name of csv file:\n";
 
-    std::getline(std::cin, output_name);
+    std::cin >> output_name;
+
+    output_name += ".csv";
 
     std::ofstream ofs(output_name);
-    
 
+    ofs << header << "\n";              // pushes header row first
+
+
+    for (int i = 0; i < work.size(); i++) {
+        ofs << work[i].GetTask() << "," << work[i].GetType() << "," << std::setprecision(1)
+            << std::to_string(work[i].GetEarned()) << "," << std::to_string(work[i].GetMax())
+            << "\n";
+
+    }
+
+    std::cout << "\nChoose option:\n"
+              << "\t1. Return to menu\n\t2. Quit\n";
+
+    std::cin >> input;
+
+    switch (input) {
+        case 1:
+            input = 0;
+            break;
+
+        case 2:
+            input = -1;
+            std::cout << "Quitting.\n";
+            break;
+
+        default:
+            std::cout << "Error: Valid option not chosen.\n";
+    }
 
 }
 
