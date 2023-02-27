@@ -13,7 +13,7 @@ class GradebookTest {
             float m_max;
 
         public:
-            GradebookTest(std::vector<std::string> work);
+            Gradebook(std::vector<std::string> work);
         
             void SetTask(std::string task);
             std::string GetTask();
