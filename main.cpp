@@ -205,7 +205,7 @@ std::pair<float, float> CalcGrade(std::vector<GradebookTest> &work) {
 }
 
 void Update(std::vector<GradebookTest> &work, int &input) {
-    std::string assign_name;        // assignment name is means task
+    std::string assign_name;        // assignment name is synonymous to task
     float earned;
 
     // While input remains 2, continue to prompt grade update
@@ -251,9 +251,9 @@ void Update(std::vector<GradebookTest> &work, int &input) {
 }
 
 // Finds assignment in work vector and returns index
-int FindWork(std::vector<GradebookTest> &work, std::string type) {
+int FindWork(std::vector<GradebookTest> &work, std::string task) {
     for (int idx = 0; idx < work.size(); idx++) {
-        if (work[idx].GetType() == type) {
+        if (work[idx].GetTask() == task) {
             return idx;
         }
     }
