@@ -31,7 +31,7 @@ Our proposed options for our program will be as follows but not in any specific 
 
 Following this basic foundation we have created, we decided to create a completed flowchart.
 Below is our finalized flowchart of the program.
-![Flowchart](/images/flowchart.png)
+![Flowchart](/images/newFlowchart.png)
 
 After the creation of this flowchart, we started working on the psudocode as a foundation guide to start the code. We developed the psudocode 
 
