@@ -257,9 +257,9 @@ void ViewAll(std::string header, std::vector<GradebookTest> &work, int &input) {
     ofs << header << "\n";              // pushes header row first
 
     for (int i = 0; i < work.size(); i++) {
-        ofs << work[i].GetTask() << "," << work[i].GetType() << "," << std::setprecision(1)
-            << std::to_string(work[i].GetEarned()) << "," << std::to_string(work[i].GetMax())
-            << "\n";
+        ofs << work[i].GetTask() << "," << work[i].GetType() << "," << std::fixed
+            << std::setprecision(1) << work[i].GetEarned() << ","
+            << work[i].GetMax() << "\n";
 
     }
 
