@@ -1,50 +1,50 @@
-#include "gradebook_test.h"
+#include "gradebook.h"
 
 #include <iostream>
 #include <vector>
 #include <string>
 #include <cmath>
 
-GradebookTest::GradebookTest(std::vector<std::string> work) {
+Gradebook::Gradebook(std::vector<std::string> work) {
     this->m_task = work[0];
     this->m_type = work[1];
     this->m_earned = std::stof(work[2]);
     this->m_max = std::stof(work[3]);
 }
 
-void GradebookTest::SetTask(std::string task) {
+void Gradebook::SetTask(std::string task) {
     this->m_task = task;
 }
 
-std::string GradebookTest::GetTask() {
+std::string Gradebook::GetTask() {
     return m_task;
 }
 
-void GradebookTest::SetType(std::string type) {
+void Gradebook::SetType(std::string type) {
     this->m_type = type;
 }
 
-std::string GradebookTest::GetType() {
+std::string Gradebook::GetType() {
     return m_type;
 }
 
-void GradebookTest::SetEarned(float earned) {
+void Gradebook::SetEarned(float earned) {
     this->m_earned = earned;
 }
 
-float GradebookTest::GetEarned() {
+float Gradebook::GetEarned() {
     return m_earned;
 }
 
-void GradebookTest::SetMax(float max) {
+void Gradebook::SetMax(float max) {
     this->m_max = max;
 }
 
-float GradebookTest::GetMax() {
+float Gradebook::GetMax() {
     return m_max;
 }
 
-void GradebookTest::PrintGrade() {
+void Gradebook::PrintGrade() {
     if (m_earned == -1) {
         std::cout << this->m_task << ":\tIncomplete/" << this->m_max << "\n";
 
