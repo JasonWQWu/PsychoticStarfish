@@ -3,7 +3,7 @@
 Gradebook project for CSC 212 Spring 2023
 
 ## Summary
-This is our gradebook assignment for CSC 212. Our group consist of **Jason Wu, Eric Chin, Shuichi Kameda, and Nathan Chen.** Our Objective for this assignment is to be able to import in a file has holds a student's grades for CSC 212, be able to view them individually, reveal the overall grade for the course, edit the score for each lab, assignment, exam and project. Included in the documentation will contain our planning of this program at the start, the compliation instructions on how to run the program correctly, how to actually use the program once running, and examples of the input and outputs of the program followed with a video guide.
+This is our gradebook assignment for CSC 212. Our group consist of **Jason Wu, Eric Chin, Shuichi Kameda, and Nathan Chen.** Our Objective for this assignment is to be able to import in a file has holds a student's grades for CSC 212, be able to view them individually, reveal the overall grade for the course, edit the score for each lab, assignment, exam and project. Included in the documentation will contain our planning of this program at the start, the compliation instructions on how to run the program correctly, how to actually use the program once running, and examples of the input and outputs of the program followed with a video guide link at the end of this page.
 
 ## Planning
 When we first brainstormed the program out, we had some rough draft ideas with psudo-flowcharts.
@@ -137,6 +137,7 @@ The output file will result in the same directory as your input file. It will no
 Once you are done using the gradebook program, the last option of the main UI will end the program's use. 
 ![Quit](/images/runtime_quit.PNG)
 
-
+## Walkthrough Video
+[Click here to watch the walkthrough video!](https://youtu.be/Rze0r_RRUl4)
 
 
