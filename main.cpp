@@ -358,7 +358,10 @@ void Category(std::vector<Gradebook> &work) {
     std::cout << "\nInput name of category to display:";
     std::string cat_name;
     std::cin >> cat_name;
-
+    
+    float total_earned = 0;
+    float total_max = 0;
+    
     // If assignment name was in lowercase, convert to uppercase
     if ((cat_name[0] >= 'a') && cat_name[0] <= 'z') {
         cat_name[0] -= 32;
@@ -370,8 +373,14 @@ void Category(std::vector<Gradebook> &work) {
         if (work[i].GetType() == cat_name) {
             std::cout << "\t";
             work[i].PrintGrade();
+            
+            if (work[i].GetEarned() != -1) {
+                total_earned += work[i].GetEarned();
+                total_max += work[i].GetMax();
+            }
         }
     }
+    std::cout << "\n\tTotal:\t" << total_earned << "/" << total_max << "\n";
 }
 
 // Prompts
