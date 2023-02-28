@@ -178,7 +178,7 @@ std::pair<float, float> CalcGrade(std::vector<Gradebook> &work) {
 }
 
 // Modifies earned points of user-selected assignment
-void Update(std::vector<GradebookTest> &work, int &input) {
+void Update(std::vector<Gradebook> &work, int &input) {
     std::string assign_name;        // Assignment name is synonymous to task
     float earned;
 
