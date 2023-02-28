@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class GradebookTest {
+class Gradebook {
 
         private:
             std::string m_task;
