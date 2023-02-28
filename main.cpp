@@ -178,16 +178,14 @@ std::pair<float, float> CalcGrade(std::vector<Gradebook> &work) {
 }
 
 // Modifies earned points of user-selected assignment
-void Update(std::vector<Gradebook> &work, int &input) {
-    std::string assign_name;        // assignment name is synonymous to task
+void Update(std::vector<GradebookTest> &work, int &input) {
+    std::string assign_name;        // Assignment name is synonymous to task
     float earned;
 
     // While input remains 2, continue to prompt grade update
     while (input == 2) {
         std::cout << "\nInput name of assignment to update:";
         std::cin >> assign_name;
-        std::cout << "\nInput new grade:";
-        std::cin >> earned;
 
         // If assignment name was in lowercase, convert to uppercase
         if ((assign_name[0] >= 'a') && assign_name[0] <= 'z') {
@@ -207,8 +205,21 @@ void Update(std::vector<Gradebook> &work, int &input) {
             }
         }
 
+        // Returns index of corresponding assignment in work vector
+        int idx = FindWork(work, assign_name);
+
+        std::cout << "\nInput new grade:";
+        std::cin >> earned;
+
+        // If input grade exceeds max for corresponding task, prompt user to re-enter
+        while (earned > work[idx].GetMax()) {
+            std::cout << "\nGrade entered is not valid; Re-enter grade:";
+            std::cin >> earned;
+
+        }
+
         // Finds assignment in work vector and changes its m_earned
-        work[FindWork(work, assign_name)].SetEarned(earned);
+        work[idx].SetEarned(earned);
 
         std::cout << "\nAssignment " << assign_name << " grade changed to " << earned << ".\n\n";
 
